@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Register Page {% endblock %}
+{% block content %}
+{% with succ = get_flashed_messages(category_filter=["register_success"]) %}
+{% if succ %}
+{% for s in succ %}
+  {{s}}
+{% endfor %}
+{% endif %}
+{% endwith %}
+<div class="login-area">
+  <div class="container">
+    <div class="login-box ptb--100">
+      <form action="register_user" method="post">
+        <div class="login-form-head">
+          <h4>Register</h4>
+          <div class="login-form-body">
+            <div class="form-gp">
+              <input type="text" id="username" name="username" placeholder="username">
+            </div>
+            <div class="form-gp">
+              <input type="password" id="password" name="password" placeholder="password">
+            </div>
+            <div class="submit-btn-area">
+              <button id="form-control" type="submit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

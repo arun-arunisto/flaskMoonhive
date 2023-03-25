@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Discussions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/metisMenu.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/slicknav.min.css')}}">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css}}" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/typography.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/default-css.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/responsive.css')}}">
+    <!-- modernizr css -->
+    <script src="{{url_for('static', filename='assets/js/vendor/modernizr-2.8.3.min.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.js"></script>
+</head>
+<body class="body-bg">
+        <div class="container">
+            <h3 align="center">Courses</h3>
+            <br/>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#askquestion">
+                        New Course
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table id="sample_data" class="table table-striped">
+                            <tbody>
+                            {% with co = get_flashed_messages(category_filter=["course"]) %}
+                            {% if co %}
+                            {% for c in co %}
+                            <tr>
+                                <td>{{c[0]}}</td>
+                                <td>{{c[1]}}</td>
+                                <td>{{c[2]}}</td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="askquestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">enter new course</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" method="post" action="course" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label class="col-form-label">course</label>
+                                    <input type="text" class="form-controlid" name="course" id="quesion"></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <input type="file" name="image" accpet="image/jpeg">
+                                </div>
+                                <input name="cmdsubmit" class="btn btn-primary" type="submit" value="submit">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-area">
+                <p>Terms and Conditions</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

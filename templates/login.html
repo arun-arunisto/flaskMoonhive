@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Login Page {% endblock %}
+{% block content %}
+<div class="login-area">
+  <div class="container">
+    <div class="login-box ptb--100">
+      <form action="login_user" method="post">
+        <div class="login-form-head">
+          <h4>Login User</h4>
+        </div>
+        <div class="login-form-body">
+          <div class="form-gp">
+            <input type="text" id="username" name="username" placeholder="username">
+          </div>
+          <div class="form-gp">
+            <input type="password" id="password" name="password" placeholder="password">
+          </div>
+          <div class="submit-btn-area">
+            <button id="form-control" type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

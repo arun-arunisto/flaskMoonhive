@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %} courses {% endblock %}
+{% block content %}
+<div class="main-content-inner">
+  <h2>Enrolled Courses</h2>
+  <div class="card-area">
+    <div class="row">
+      {% with enroll = get_flashed_messages(category_filter=["enroll"]) %}
+      {% if enroll %}
+      {% for en in enroll %}
+      <div class="col-lg-12 col-md-6 mt-5">
+        <div class="card card-bordered">
+          <img class="card-img-top img-fluid" src="static/assets/images/{{en[2]}}" style="width: 30%; height: 30%;">
+          <div class="card-body">
+            <h5 class="title">{{en[1]}}</h5>
+            <a href="#" class="btn btn-primary">Resume Course</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+</div>
+<hr>
+<div class="main-content-inner">
+  <h2>Courses</h2>
+  <div class="card-area">
+    <div class="row">
+      {% with cou = get_flashed_messages(category_filter=["courses"]) %}
+      {% if cou %}
+      {% for c in cou %}
+      <div class="col-lg-4 col-md-6 mt-5">
+        <div class="card card-bordered">
+          <img class="card-img-top img-fluid" src="static/assets/images/{{c[2]}}" style="width: 30%; height: 30%;">
+          <div class="card-body">
+            <h5 class="title">{{c[1]}}</h5>
+            <form action="/enroll_course" method="post">
+              <input type="number" value="{{c[0]}}" name="id" hidden="hidden">
+              <button type="submit" class="btn btn-primary">Enroll course</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+</div>
+<div class="main-content-inner">
+    <div class="row">
+        <div class="col-lg-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="header-title">Discussions</div>
+                    <div class="single-table">
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <tbody>
+                                {% with di = get_flashed_messages(category_filter=["discussions"]) %}
+                                {% if di %}
+                                {% for d in di %}
+                                <tr>
+                                    <td>{{d[1]}}</td>
+                                    <td>{{d[2]}}</td>
+                                    <td>{{d[3]}}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
